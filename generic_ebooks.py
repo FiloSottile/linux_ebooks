@@ -11,7 +11,7 @@ TOPDIR = os.path.dirname(os.path.realpath(__file__))
 class Generator:
     def __init__(self):
         dataset = open(os.path.join(TOPDIR, 'dataset.txt')).read()
-        words = [word for word in dataset.split() if not "http://" in word]
+        words = [word for word in dataset.split() if re.match(r'[a-zA-Z0-9 \.,?:\'"!_\(\)]+', word)]
         self.words = words
         self.model = nltk.Text(words)
 
