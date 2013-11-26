@@ -19,7 +19,7 @@ class Generator:
         """Generates a list of words using an NLTK NgramModel."""
         if not hasattr(self, '_ngram_model'):
             estimator = lambda fdist, bins: LidstoneProbDist(fdist, 0.2)
-            self._ngram_model = NgramModel(2, self.model, estimator)
+            self._ngram_model = NgramModel(2, self.model, estimator=estimator)
         return self._ngram_model.generate(length, [random.choice(self.words)])[1:]
 
     def smart_trim(self, genwords):
